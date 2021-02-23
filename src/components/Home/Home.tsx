@@ -26,12 +26,28 @@ function Home() {
 
   return (
     <div>
-      {users !== null &&
-        users.map(({ id, name, username, company }) => (
-          <div key={`${username}-${id}`}>
-            <span>{name}</span>-<span>{company.name}</span>
-          </div>
-        ))}
+      {users !== null && (
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Company</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map(({ id, name, username, company }) => (
+              <tr key={`${username}-${id}`}>
+                <td>{name}</td>
+                <td>{company.name}</td>
+                <td>
+                  <a href={`/posts?userId=${id}`}>View Posts</a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }
