@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { useFetch } from '../../hooks/useFetch';
 
 interface User {
@@ -14,11 +15,14 @@ interface Company {
 }
 
 function Home() {
+  const [nameFilter, setNameFilter] = useState('');
+  const [companyFilter, setCompanyFilter] = useState('');
   const { response: users, error, loading } = useFetch<User>('/users');
 
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
+  const clearFilters = () => {
+    setNameFilter('');
+    setCompanyFilter('');
+  };
 
   if (error) {
     return <h2>{error}</h2>;
@@ -26,6 +30,24 @@ function Home() {
 
   return (
     <div>
+      <div>
+        <input
+          value={nameFilter}
+          onChange={({ target }) => setNameFilter(target.value)}
+          placeholder="Filter By Name..."
+          disabled={loading}
+        />
+        <input
+          value={companyFilter}
+          onChange={({ target }) => setCompanyFilter(target.value)}
+          placeholder="Filter By Company..."
+          disabled={loading}
+        />
+        {(!!nameFilter || !!companyFilter) && (
+          <button onClick={clearFilters}>x clear filters</button>
+        )}
+      </div>
+      {loading && <h2>Fetching Users... Sit Tight!</h2>}
       {users !== null && (
         <table>
           <thead>
