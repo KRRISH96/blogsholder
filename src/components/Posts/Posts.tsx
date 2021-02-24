@@ -71,6 +71,8 @@ function Posts() {
         ))}
         {!filteredPosts.length && <li>No posts matching search term....</li>}
       </ul>
+      <br />
+      <a href="/">Back to Users</a>
     </div>
   );
 }
