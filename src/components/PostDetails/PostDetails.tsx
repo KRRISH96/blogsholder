@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+import { API_BASE_URL } from '../../constants';
 import { useFetch } from '../../hooks/useFetch';
 import BackButton from '../BackButton';
 import { Post } from '../Posts/Posts';
@@ -12,7 +13,9 @@ interface ParamsData {
 
 function PostDetails() {
   const { id } = useParams<ParamsData>();
+  const history = useHistory();
   const [showComments, setShowComments] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
   const { response: postDetails, error, loading } = useFetch<Post>(
     `/posts/${id}`
   );
@@ -21,11 +24,29 @@ function PostDetails() {
     return <h2>{error}</h2>;
   }
 
+  const deletePost = async (postId: number) => {
+    setDeleteLoading(true);
+    const { status } = await fetch(`${API_BASE_URL}/posts/${postId}`, {
+      method: 'DELETE',
+    });
+
+    if (status === 200) {
+      history.push(`/posts?userId=${postDetails?.userId}`);
+    } else {
+      setDeleteLoading(false);
+    }
+  };
+
   return (
     <div>
       {loading && <h2>Fetching Post Details... Hang Tight!</h2>}
       <p>{postDetails?.title}</p>
       <p>{postDetails?.body}</p>
+      {postDetails?.id && (
+        <button onClick={() => deletePost(postDetails.id)} disabled={loading}>
+          {deleteLoading ? 'Deleting...' : 'Delete Post'}
+        </button>
+      )}
       {showComments ? (
         <Comments postId={Number(id)} />
       ) : (
