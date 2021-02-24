@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useParams } from 'react-router-dom';
 import { useFetch } from '../../hooks/useFetch';
+import BackButton from '../BackButton';
 import { Post } from '../Posts/Posts';
 
 interface ParamsData {
@@ -22,7 +23,7 @@ function PostDetails() {
       {loading && <h2>Fetching Post Details... Hang Tight!</h2>}
       <p>{postDetails?.title}</p>
       <p>{postDetails?.body}</p>
-      <a href={`/posts?userId=${postDetails?.userId}`}>Back to Posts</a>
+      <BackButton />
     </div>
   );
 }

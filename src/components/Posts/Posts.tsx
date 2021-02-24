@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useMemo, useState, useEffect } from 'react';
 import { useQueryParams } from '../../hooks/useQueryParams';
 import { useFetch } from '../../hooks/useFetch';
+import BackButton from '../BackButton';
 
 export interface Post {
   userId: number;
@@ -75,7 +76,7 @@ function Posts() {
         {!filteredPosts.length && <li>No posts matching search term....</li>}
       </ul>
       <br />
-      <a href="/">Back to Users</a>
+      <BackButton />
     </div>
   );
 }
