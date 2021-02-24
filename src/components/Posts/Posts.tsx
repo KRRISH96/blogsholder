@@ -3,7 +3,7 @@ import { useMemo, useState, useEffect } from 'react';
 import { useQueryParams } from '../../hooks/useQueryParams';
 import { useFetch } from '../../hooks/useFetch';
 
-interface Post {
+export interface Post {
   userId: number;
   id: number;
   title: string;
