@@ -14,9 +14,11 @@ interface Comment {
 }
 
 function Comments({ postId }: Props) {
-  const { response: comments, error, loading } = useFetch<Comment[]>(
-    `/posts/${postId}/comments`
-  );
+  const {
+    response: { data: comments },
+    error,
+    loading,
+  } = useFetch<Comment[]>(`/posts/${postId}/comments`);
 
   if (error) {
     return <h2>{error}</h2>;

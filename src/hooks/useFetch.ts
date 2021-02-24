@@ -6,27 +6,34 @@ interface FetchOptions {
 }
 
 interface FetchResponseData<T> {
-  response: T | null;
+  response: Response<T>;
   error: string | null;
   loading: boolean;
-  totalCount: number;
 }
+
+interface Response<T> {
+  data: T | null;
+  totalCount?: number;
+}
+
+const DEFAULT_RESPONSE_STATE = {
+  data: null
+};
 
 /**
  * @param endpoint endpoint to fetch data from.
  * @param options request options (method, header, body etc.,)
  */
 export function useFetch<T>(endpoint: string, options:FetchOptions = {}): FetchResponseData<T> {
-  const [response, setResponse] = React.useState(null);
+  const [response, setResponse] = React.useState<Response<T>>(DEFAULT_RESPONSE_STATE);
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
-  const [totalCount, setTotalCount] = React.useState(0);
 
   React.useEffect(() => {
     let didCancelFetch = false;
 
     // Resets the response and errors on subsequent calls
-    setResponse(null);
+    setResponse(DEFAULT_RESPONSE_STATE);
     setError(null);
 
     const fetchData = async () => {
@@ -35,8 +42,12 @@ export function useFetch<T>(endpoint: string, options:FetchOptions = {}): FetchR
         const responseJson = await res.json();
 
         if (!didCancelFetch) {
-          setResponse(responseJson);
-          setTotalCount(+(res.headers.get("X-Total-Count") ?? 0))
+          const updatedResponse: Response<T> = { data: responseJson }
+          if (res.headers.get("X-Total-Count") != null) {
+            updatedResponse.totalCount = Number(res.headers.get("X-Total-Count"))
+          }
+
+          setResponse(updatedResponse);
         }
       } catch (err) {
         setError(err || 'Something went wrong!');
@@ -51,5 +62,5 @@ export function useFetch<T>(endpoint: string, options:FetchOptions = {}): FetchR
     };
   }, [endpoint]);
 
-  return { response, error, loading, totalCount };
+  return { response, error, loading };
 }

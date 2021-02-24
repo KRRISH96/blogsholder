@@ -16,9 +16,11 @@ function Posts() {
   const userId = queryParams.get('userId');
   const [titleFilter, setTitleFilter] = useState('');
 
-  const { response: posts, error, loading } = useFetch<Post[]>(
-    `/users/${userId}/posts`
-  );
+  const {
+    response: { data: posts, totalCount },
+    error,
+    loading,
+  } = useFetch<Post[]>(`/users/${userId}/posts`);
 
   const initialPosts = useMemo(() => posts ?? [], [posts]);
   const [filteredPosts, setFilteredPosts] = useState(initialPosts);

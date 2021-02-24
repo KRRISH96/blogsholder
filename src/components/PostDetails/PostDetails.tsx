@@ -16,9 +16,11 @@ function PostDetails() {
   const history = useHistory();
   const [showComments, setShowComments] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
-  const { response: postDetails, error, loading } = useFetch<Post>(
-    `/posts/${id}`
-  );
+  const {
+    response: { data: postDetails },
+    error,
+    loading,
+  } = useFetch<Post>(`/posts/${id}`);
 
   if (error) {
     return <h2>{error}</h2>;

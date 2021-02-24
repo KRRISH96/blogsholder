@@ -17,7 +17,11 @@ interface Company {
 function Home() {
   const [nameFilter, setNameFilter] = useState('');
   const [companyFilter, setCompanyFilter] = useState('');
-  const { response: users, error, loading } = useFetch<User[]>('/users');
+  const {
+    response: { data: users },
+    error,
+    loading,
+  } = useFetch<User[]>('/users');
   const initialUsers = useMemo(() => users ?? [], [users]);
   const [filteredUsers, setFilteredUsers] = useState(initialUsers);
 
