@@ -9,6 +9,7 @@ interface FetchResponseData<T> {
   response: T | null;
   error: string | null;
   loading: boolean;
+  totalCount: number;
 }
 
 /**
@@ -19,6 +20,7 @@ export function useFetch<T>(endpoint: string, options:FetchOptions = {}): FetchR
   const [response, setResponse] = React.useState(null);
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
+  const [totalCount, setTotalCount] = React.useState(0);
 
   React.useEffect(() => {
     let didCancelFetch = false;
@@ -34,6 +36,7 @@ export function useFetch<T>(endpoint: string, options:FetchOptions = {}): FetchR
 
         if (!didCancelFetch) {
           setResponse(responseJson);
+          setTotalCount(+(res.headers.get("X-Total-Count") ?? 0))
         }
       } catch (err) {
         setError(err || 'Something went wrong!');
@@ -48,5 +51,5 @@ export function useFetch<T>(endpoint: string, options:FetchOptions = {}): FetchR
     };
   }, [endpoint]);
 
-  return { response, error, loading };
+  return { response, error, loading, totalCount };
 }
