@@ -6,7 +6,7 @@ interface FetchOptions {
 }
 
 interface FetchResponseData<T> {
-  response: T[] | null;
+  response: T | null;
   error: string | null;
   loading: boolean;
 }

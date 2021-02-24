@@ -18,7 +18,7 @@ function Posts() {
   const queryParamToAppend = !!userId ? `?userId=${userId}` : '';
   const [titleFilter, setTitleFilter] = useState('');
 
-  const { response: posts, error, loading } = useFetch<Post>(
+  const { response: posts, error, loading } = useFetch<Post[]>(
     `/posts${queryParamToAppend}`
   );
 
