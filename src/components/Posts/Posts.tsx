@@ -14,13 +14,10 @@ export interface Post {
 function Posts() {
   const queryParams = useQueryParams();
   const userId = queryParams.get('userId');
-  // If userId isn't present (manually entered URL) ignore userId param and load all posts
-  // Usually, this will be restricted on an authenticated route
-  const queryParamToAppend = !!userId ? `?userId=${userId}` : '';
   const [titleFilter, setTitleFilter] = useState('');
 
   const { response: posts, error, loading } = useFetch<Post[]>(
-    `/posts${queryParamToAppend}`
+    `/users/${userId}/posts`
   );
 
   const initialPosts = useMemo(() => posts ?? [], [posts]);
