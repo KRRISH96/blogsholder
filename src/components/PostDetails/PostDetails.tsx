@@ -5,6 +5,7 @@ import { API_BASE_URL } from '../../constants';
 import { useFetch } from '../../hooks/useFetch';
 import BackButton from '../BackButton';
 import { Post } from '../Posts/Posts';
+import TextHighlighter from '../TextHighlighter';
 import Comments from './Comments';
 
 interface ParamsData {
@@ -16,6 +17,7 @@ function PostDetails() {
   const history = useHistory();
   const [showComments, setShowComments] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
+  const [searchText, setSearchText] = useState('');
   const {
     response: { data: postDetails },
     error,
@@ -41,9 +43,28 @@ function PostDetails() {
 
   return (
     <div>
+      <input
+        value={searchText}
+        onChange={({ target }) => setSearchText(target.value)}
+        placeholder="Search Term..."
+        disabled={loading}
+      />
+      {!!searchText && (
+        <button onClick={() => setSearchText('')}>x clear search term</button>
+      )}
       {loading && <h2>Fetching Post Details... Hang Tight!</h2>}
-      <p>{postDetails?.title}</p>
-      <p>{postDetails?.body}</p>
+      <p>
+        <TextHighlighter
+          text={postDetails?.title ?? ''}
+          highlight={searchText}
+        />
+      </p>
+      <p>
+        <TextHighlighter
+          text={postDetails?.body ?? ''}
+          highlight={searchText}
+        />
+      </p>
       {postDetails?.id && (
         <button onClick={() => deletePost(postDetails.id)} disabled={loading}>
           {deleteLoading ? 'Deleting...' : 'Delete Post'}
