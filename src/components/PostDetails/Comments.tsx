@@ -25,18 +25,20 @@ function Comments({ postId }: Props) {
   }
 
   return (
-    <div>
+    <div className="comments-container">
       {loading && <h4>Fetching Comments... Hang Tight!</h4>}
       <h4>Comments</h4>
-      <ul>
-        {comments?.map(({ postId, id, name, body }) => (
-          <li key={`${postId}-${id}`}>
-            <p>{name}</p>
-            <p>{body}</p>
-          </li>
-        ))}
-        {!comments?.length && <li>No Comments Yet</li>}
-      </ul>
+      {comments != null && (
+        <ul className="comments-list">
+          {comments.map(({ postId, id, name, body }) => (
+            <li key={`${postId}-${id}`} className="comment-item">
+              <p className="author">{name}</p>
+              <p className="comment">{body}</p>
+            </li>
+          ))}
+          {!comments.length && <li>No Comments Yet</li>}
+        </ul>
+      )}
     </div>
   );
 }

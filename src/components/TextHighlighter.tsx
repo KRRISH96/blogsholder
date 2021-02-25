@@ -16,14 +16,10 @@ function TextHighlighter({ text, highlight }: Readonly<Props>) {
       {parts.map((part, i) => (
         <span
           key={i}
-          style={
+          className={
             part.toLowerCase() === highlight.toLowerCase()
-              ? {
-                  fontWeight: 'bold',
-                  color: 'red',
-                  backgroundColor: 'yellow',
-                }
-              : {}
+              ? 'text-highlited'
+              : ''
           }
         >
           {part}

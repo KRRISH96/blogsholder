@@ -9,4 +9,18 @@
       letter-spacing: 0.05rem;
     }
   }
+  .comments-container {
+    .comments-list {
+      .comment-item {
+        list-style-type: '✍️';
+        padding-left: var(--s-1);
+        margin-bottom: var(--s-2);
+        border-bottom: 1px dashed var(--color-secondary);
+        .author {
+          text-transform: capitalize;
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }
