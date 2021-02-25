@@ -11,6 +11,7 @@ import { DEFAULT_COUNT_PER_PAGE, DEFAULT_PAGE } from '../../constants';
 import Pagination from '../Pagination/Pagination';
 import PostsList from './PostsList';
 import './postsStyles.scss';
+import Loader from '../Loader/Loader';
 
 export interface PostData {
   userId: number;
@@ -122,7 +123,7 @@ function Posts() {
           <button onClick={clearFilters}>x clear filters</button>
         )}
       </div>
-      {loading && <h2>Fetching Posts... Sit Tight!</h2>}
+      {loading && <Loader statusText="Fetching Posts..." />}
       <PostsList posts={filteredPosts} titleFilter={titleFilter} />
       <Pagination
         page={Number(paginationQueryParams.page)}

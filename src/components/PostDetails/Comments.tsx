@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useFetch } from '../../hooks/useFetch';
+import Loader from '../Loader/Loader';
 
 interface Props {
   postId: number;
@@ -26,8 +27,8 @@ function Comments({ postId }: Props) {
 
   return (
     <div className="comments-container">
+      <h4>Comments ({comments?.length ?? 0})</h4>
       {loading && <h4>Fetching Comments... Hang Tight!</h4>}
-      <h4>Comments</h4>
       {comments != null && (
         <ul className="comments-list">
           {comments.map(({ postId, id, name, body }) => (
@@ -36,7 +37,7 @@ function Comments({ postId }: Props) {
               <p className="comment">{body}</p>
             </li>
           ))}
-          {!comments.length && <li>No Comments Yet</li>}
+          {!loading && !comments.length && <li>No Comments Yet</li>}
         </ul>
       )}
     </div>

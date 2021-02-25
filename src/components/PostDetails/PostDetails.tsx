@@ -4,6 +4,7 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 import { API_BASE_URL } from '../../constants';
 import { useFetch } from '../../hooks/useFetch';
 import BackButton from '../BackButton';
+import Loader from '../Loader/Loader';
 import { PostData } from '../Posts/Posts';
 import TextHighlighter from '../TextHighlighter';
 import Comments from './Comments';
@@ -70,7 +71,7 @@ function PostDetails() {
           <button onClick={() => setSearchText('')}>x clear search term</button>
         )}
       </div>
-      {loading && <h2>Fetching Post Details... Hang Tight!</h2>}
+      {loading && <Loader statusText="Fetching Post Details..." />}
       <article className="post-content card">
         <h2 className="post-content__title">
           <TextHighlighter
