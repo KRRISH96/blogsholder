@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { FaSun, FaMoon, FaCog, FaRegClock } from 'react-icons/fa';
 import { THEME_PREFERENCE_KEY, THEMES } from '../../constants';
 import { isDayTime } from '../../utils';
 import './themeStyles.scss';
@@ -40,19 +41,19 @@ function Theme() {
   return (
     <div className="theme-switch-wrapper">
       <ThemeButton themePreference={THEMES.light} title="Light Theme">
-        L
+        <FaSun />
       </ThemeButton>
       <ThemeButton themePreference={THEMES.dark} title="Dark Theme">
-        D
+        <FaMoon />
       </ThemeButton>
       <ThemeButton themePreference={THEMES.system} title="System Default Theme">
-        S
+        <FaCog />
       </ThemeButton>
       <ThemeButton
         themePreference={THEMES.auto}
         title="Light during Day(7am-7pm) and Dark during Night"
       >
-        A
+        <FaRegClock />
       </ThemeButton>
     </div>
   );
