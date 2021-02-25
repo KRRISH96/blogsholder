@@ -27,7 +27,7 @@ function PostDetails() {
   } = useFetch<PostData>(`/posts/${id}`);
 
   if (error) {
-    return <h2>{error}</h2>;
+    return <h2 className="error">{error}</h2>;
   }
 
   const deletePost = async (postId: number) => {

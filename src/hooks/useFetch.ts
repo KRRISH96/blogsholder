@@ -50,7 +50,7 @@ export function useFetch<T>(endpoint: string, options:FetchOptions = {}): FetchR
           setResponse(updatedResponse);
         }
       } catch (err) {
-        setError(err || 'Something went wrong!');
+        setError(err.message || 'Something went wrong!');
       }
       setLoading(false);
     };

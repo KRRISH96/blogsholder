@@ -22,7 +22,7 @@ function Comments({ postId }: Props) {
   } = useFetch<Comment[]>(`/posts/${postId}/comments`);
 
   if (error) {
-    return <h2>{error}</h2>;
+    return <h2 className="error">{error}</h2>;
   }
 
   return (
