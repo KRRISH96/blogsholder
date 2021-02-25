@@ -1,12 +1,15 @@
 .home-page {
   .users-table-container {
     overflow-x: auto;
+    box-shadow: 0.1rem 0.1rem 1rem 0.5rem var(--dark-secondary);
+    border-radius: 0.2rem;
     .users-table {
       border-spacing: 0;
       text-transform: capitalize;
       min-width: 35rem;
       width: 100%;
       border-collapse: collapse;
+      background-color: var(--bg-secondary);
       th,
       td {
         text-align: left;
