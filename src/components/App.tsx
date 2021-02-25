@@ -8,11 +8,13 @@ import {
 import Home from './Home/Home';
 import Posts from './Posts/Posts';
 import PostDetails from './PostDetails/PostDetails';
+import Header from './Header/Header';
 
 function App() {
   return (
     <div>
       <Router>
+        <Header />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/posts" component={Posts} />
