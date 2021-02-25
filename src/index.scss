@@ -139,6 +139,10 @@ input {
   &[type='text'] {
     min-width: 15rem;
   }
+  &[type='number'] {
+    padding-left: var(--s-1_5);
+    padding-right: 0;
+  }
   &[disabled] {
     background-color: var(--greyish);
     cursor: not-allowed;
