@@ -7,6 +7,7 @@ import BackButton from '../BackButton';
 import { PostData } from '../Posts/Posts';
 import TextHighlighter from '../TextHighlighter';
 import Comments from './Comments';
+import './postDetailsStyles.scss';
 
 interface ParamsData {
   id: string;
@@ -42,7 +43,7 @@ function PostDetails() {
   };
 
   return (
-    <div>
+    <div className="post-details-page">
       <h2>
         <Link to="/">Users</Link>
         <span>{' > '}</span>
@@ -70,27 +71,29 @@ function PostDetails() {
         )}
       </div>
       {loading && <h2>Fetching Post Details... Hang Tight!</h2>}
-      <p>
-        <TextHighlighter
-          text={postDetails?.title ?? ''}
-          highlight={searchText}
-        />
-      </p>
-      <p>
-        <TextHighlighter
-          text={postDetails?.body ?? ''}
-          highlight={searchText}
-        />
-      </p>
-      {postDetails?.id && (
-        <button
-          className="danger"
-          onClick={() => deletePost(postDetails.id)}
-          disabled={loading}
-        >
-          {deleteLoading ? 'Deleting...' : 'Delete Post'}
-        </button>
-      )}
+      <article className="post-content card">
+        <h2 className="post-content__title">
+          <TextHighlighter
+            text={postDetails?.title ?? ''}
+            highlight={searchText}
+          />
+        </h2>
+        <p className="post-content__body">
+          <TextHighlighter
+            text={postDetails?.body ?? ''}
+            highlight={searchText}
+          />
+        </p>
+        {postDetails?.id && (
+          <button
+            className="danger"
+            onClick={() => deletePost(postDetails.id)}
+            disabled={loading}
+          >
+            {deleteLoading ? 'Deleting...' : 'Delete Post'}
+          </button>
+        )}
+      </article>
       {showComments ? (
         <Comments postId={Number(id)} />
       ) : (

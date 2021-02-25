@@ -8,7 +8,7 @@ interface PostsListProps {
 }
 function PostsList({ posts, titleFilter }: PostsListProps) {
   return (
-    <ul className="posts-list">
+    <ul className="posts-list card">
       {posts.map(({ userId, id, title }) => (
         <li key={`${userId}-${id}`} className="posts-list__item">
           <a href={`/posts/${id}`} className="posts-list__item-link">

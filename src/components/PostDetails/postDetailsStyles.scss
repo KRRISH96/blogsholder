@@ -1,0 +1,12 @@
+.post-details-page {
+  .post-content {
+    padding: var(--s-1);
+    &__title {
+      text-transform: capitalize;
+    }
+    &__body {
+      line-height: 1.5rem;
+      letter-spacing: 0.05rem;
+    }
+  }
+}
