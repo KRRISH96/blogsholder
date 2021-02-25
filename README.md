@@ -51,18 +51,24 @@ Deployed on Netlify - [App Link](https://blogsholder.netlify.app/)
 
 <br></br>
 
-## 💡 Further Enhancements (TODO)
+### General
 
 <hr></hr>
-👉 Option to switch between design layouts in the home screen (listing, cards, expansive panels, etc.)
-
 👉 Theme Options
 
 1. Light
 2. Dark
 3. System Preferred (Light or Dark)
 4. Time Based (Auto sets theme based on time of the day)
-   <br></br>
+
+<br></br>
+
+## 💡 Further Enhancements (TODO)
+
+<hr></hr>
+👉 Option to switch between design layouts in the home screen (listing, cards, expansive panels, etc.)
+
+<br></br>
 
 ## 💻 Development Setup
 
