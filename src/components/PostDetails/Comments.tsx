@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useFetch } from '../../hooks/useFetch';
-import Loader from '../Loader/Loader';
 
 interface Props {
   postId: number;
