@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect, useMemo } from 'react';
 import { useFetch } from '../../hooks/useFetch';
+import Loader from '../Loader/Loader';
 import './homeStyles.scss';
 import UsersTable from './UsersTable';
 
@@ -81,7 +82,7 @@ function Home() {
           <button onClick={clearFilters}>x clear filters</button>
         )}
       </div>
-      {loading && <h2>Fetching Users... Sit Tight!</h2>}
+      {loading && <Loader statusText="Fetching Users..." />}
       <UsersTable
         users={filteredUsers}
         nameFilter={nameFilter}
