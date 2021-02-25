@@ -4,16 +4,17 @@ import { UsersListProps } from './Home';
 
 function UsersGrid({ users, nameFilter, companyFilter }: UsersListProps) {
   return (
-    <div className="user-cards-container">
+    <div className="user-grid-container">
       <div className="user-cards__list">
         {users.map(({ id, name, username, company }) => (
-          <div key={`${username}-${id}`} className="card">
-            <span className="user-name">
+          <div key={`${username}-${id}`} className="user-card card">
+            <h3 className="user-name">
               <TextHighlighter text={name} highlight={nameFilter} />
-            </span>
-            <span className="company-name">
+            </h3>
+            <p className="company-name">
+              Company:{' '}
               <TextHighlighter text={company.name} highlight={companyFilter} />
-            </span>
+            </p>
             <span className="user-posts-link">
               <a href={`/posts?userId=${id}`}>View Posts</a>
             </span>

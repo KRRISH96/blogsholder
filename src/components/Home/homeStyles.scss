@@ -48,9 +48,24 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    margin-bottom: var(--s-0_75);
     .active {
       background-color: var(--bg-invert);
       color: var(--color-invert);
+    }
+  }
+
+  .user-grid-container {
+    .user-cards__list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+      grid-gap: var(--s-1_25);
+      .user-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
     }
   }
 }
