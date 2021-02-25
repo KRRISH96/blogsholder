@@ -5,8 +5,6 @@ A Frontend only Blog Platform Mock using [JSON Placeholder API](https://jsonplac
 
 ## 🔗 Live
 
-<hr></hr>
-
 Deployed on Netlify - [App Link](https://blogsholder.netlify.app/)
 <br></br>
 
