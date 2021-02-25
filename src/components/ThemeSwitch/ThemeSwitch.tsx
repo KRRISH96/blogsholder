@@ -4,6 +4,12 @@ import { THEME_PREFERENCE_KEY, THEMES } from '../../constants';
 import { isDayTime } from '../../utils';
 import './themeStyles.scss';
 
+interface ThemeButtonProps {
+  children: React.ReactNode;
+  themePreference: string;
+  title: string;
+}
+
 function Theme() {
   const defaultTheme = localStorage.getItem(THEME_PREFERENCE_KEY)
     ? localStorage.getItem(THEME_PREFERENCE_KEY)
@@ -27,11 +33,15 @@ function Theme() {
     }
   };
 
-  const ThemeButton = ({ children, themePreference, ...props }: any) => (
+  const ThemeButton = ({
+    children,
+    themePreference,
+    title,
+  }: ThemeButtonProps) => (
     <button
       className={`theme-btn ${theme === themePreference ? 'active' : ''}`}
       onClick={() => setTheme(themePreference)}
-      {...props}
+      title={title}
     >
       {children}
     </button>
