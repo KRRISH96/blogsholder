@@ -32,9 +32,9 @@ export function useFetch<T>(endpoint: string, options:FetchOptions = {}): FetchR
   React.useEffect(() => {
     let didCancelFetch = false;
 
-    // Resets the response and errors on subsequent calls
-    setResponse(DEFAULT_RESPONSE_STATE);
+    // Resets the loader and errors on subsequent calls
     setError(null);
+    setLoading(true);
 
     const fetchData = async () => {
       try {
