@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useMemo, useState, useEffect } from 'react';
 import { useFetch } from '../../hooks/useFetch';
 import BackButton from '../BackButton';
-import { useHistory, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import {
   generatePaginationQueryString,
   getPaginationQueryParams,
@@ -104,7 +104,11 @@ function Posts() {
 
   return (
     <div>
-      <h2>Posts</h2>
+      <h2>
+        <Link to="/">Users</Link>
+        <span>{' > '}</span>
+        Posts
+      </h2>
       <div className="filters">
         <input
           type="text"

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import { API_BASE_URL } from '../../constants';
 import { useFetch } from '../../hooks/useFetch';
 import BackButton from '../BackButton';
@@ -43,7 +43,20 @@ function PostDetails() {
 
   return (
     <div>
-      <h2>Post Details</h2>
+      <h2>
+        <Link to="/">Users</Link>
+        <span>{' > '}</span>
+        <Link
+          to={{
+            pathname: '/posts',
+            search: `?userId=${postDetails?.userId}`,
+          }}
+        >
+          Posts
+        </Link>
+        <span>{' > '}</span>
+        Post Details
+      </h2>
       <div className="filters">
         <input
           type="text"
