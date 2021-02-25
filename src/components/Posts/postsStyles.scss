@@ -1,0 +1,19 @@
+.posts-page {
+  .posts-list {
+    margin-bottom: var(--s-1);
+    background-color: var(--bg-secondary);
+    box-shadow: var(--shadow-secondary);
+    padding: var(--s-1) var(--s-0_75);
+    border-radius: 0.4rem;
+    font-size: var(--font-20);
+    text-transform: capitalize;
+    &__item {
+      list-style-type: '✏️';
+      margin: var(--s-1_5);
+      padding-left: var(--s-1);
+    }
+    &__item-link {
+      color: var(--color);
+    }
+  }
+}

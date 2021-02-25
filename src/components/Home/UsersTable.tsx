@@ -40,7 +40,7 @@ function UsersTable({ users, nameFilter, companyFilter }: UsersTableProps) {
           ))}
           {!users.length && (
             <tr>
-              <td colSpan={3}>No users matching search term....</td>
+              <td colSpan={4}>No users matching search term....</td>
             </tr>
           )}
         </tbody>

@@ -10,6 +10,7 @@ import {
 import { DEFAULT_COUNT_PER_PAGE, DEFAULT_PAGE } from '../../constants';
 import Pagination from '../Pagination/Pagination';
 import PostsList from './PostsList';
+import './postsStyles.scss';
 
 export interface PostData {
   userId: number;
@@ -103,7 +104,7 @@ function Posts() {
   }
 
   return (
-    <div>
+    <div className="posts-page">
       <h2>
         <Link to="/">Users</Link>
         <span>{' > '}</span>
