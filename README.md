@@ -17,7 +17,12 @@ Deployed on Netlify - [App Link](https://blogsholder.netlify.app/)
 👉 A simple table to display users, with columns as name, company, blog posts link.
 
 👉 A filter for user name and companyname.
-<br></br>
+
+👉 Design Layout Options
+
+1. Table
+2. Grid (cards)
+   <br></br>
 
 ### Posts Page
 
@@ -58,13 +63,6 @@ Deployed on Netlify - [App Link](https://blogsholder.netlify.app/)
 2. Dark
 3. System Preferred (Light or Dark)
 4. Time Based (Auto sets theme based on time of the day)
-
-<br></br>
-
-## 💡 Further Enhancements (TODO)
-
-<hr></hr>
-👉 Option to switch between design layouts in the home screen (listing, cards, expansive panels, etc.)
 
 <br></br>
 
