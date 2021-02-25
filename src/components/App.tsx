@@ -9,6 +9,7 @@ import Home from './Home/Home';
 import Posts from './Posts/Posts';
 import PostDetails from './PostDetails/PostDetails';
 import Header from './Header/Header';
+import Footer from './Footer';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           </Route>
         </Switch>
       </main>
+      <Footer />
     </Router>
   );
 }

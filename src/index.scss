@@ -145,8 +145,26 @@ body {
   }
 }
 
-header {
+header,
+footer {
   height: 4rem;
+}
+
+footer {
+  padding: var(--s-2) var(--s-1);
+  margin-top: var(--s-3);
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-secondary);
+  border-top: 0.05rem solid var(--link-active);
+  @include break-point-down(tablet-portrait) {
+    flex-direction: column-reverse;
+    .copyright {
+      margin-top: var(--s-1);
+      text-align: center;
+    }
+  }
 }
 
 .container {
@@ -156,7 +174,8 @@ header {
 }
 
 main {
-  min-height: calc(100vh - 4rem); // vh - header height
+  min-height: calc(100vh - 8rem); // vh - header+footer height
+  margin-bottom: var(--s-5);
 }
 
 input {
