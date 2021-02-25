@@ -44,16 +44,18 @@ function PostDetails() {
   return (
     <div>
       <h2>Post Details</h2>
-      <input
-        type="text"
-        value={searchText}
-        onChange={({ target }) => setSearchText(target.value)}
-        placeholder="Search Term..."
-        disabled={loading}
-      />
-      {!!searchText && (
-        <button onClick={() => setSearchText('')}>x clear search term</button>
-      )}
+      <div className="filters">
+        <input
+          type="text"
+          value={searchText}
+          onChange={({ target }) => setSearchText(target.value)}
+          placeholder="Search Term..."
+          disabled={loading}
+        />
+        {!!searchText && (
+          <button onClick={() => setSearchText('')}>x clear search term</button>
+        )}
+      </div>
       {loading && <h2>Fetching Post Details... Hang Tight!</h2>}
       <p>
         <TextHighlighter

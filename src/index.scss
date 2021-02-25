@@ -1,5 +1,6 @@
 @import-normalize;
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import './mixins';
 
 :root {
   // Colors
@@ -171,6 +172,17 @@ button {
     box-shadow: var(--btn-shadow-danger);
     &:hover {
       background-color: var(--pink);
+    }
+  }
+}
+
+.filters {
+  margin-bottom: var(--s-2);
+  display: flex;
+  @include break-point-down(phone-only) {
+    flex-direction: column;
+    .copyright {
+      margin-top: var(--s-1);
     }
   }
 }

@@ -105,7 +105,7 @@ function Posts() {
   return (
     <div>
       <h2>Posts</h2>
-      <div>
+      <div className="filters">
         <input
           type="text"
           value={titleFilter}

@@ -62,7 +62,7 @@ function Home() {
   return (
     <div className="home-page">
       <h2>Users</h2>
-      <div>
+      <div className="filters">
         <input
           type="text"
           value={nameFilter}
