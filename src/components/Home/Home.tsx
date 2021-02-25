@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect, useMemo } from 'react';
 import { useFetch } from '../../hooks/useFetch';
+import TextHighlighter from '../TextHighlighter';
 
 interface User {
   id: number;
@@ -88,8 +89,15 @@ function Home() {
         <tbody>
           {filteredUsers.map(({ id, name, username, company }) => (
             <tr key={`${username}-${id}`}>
-              <td>{name}</td>
-              <td>{company.name}</td>
+              <td>
+                <TextHighlighter text={name} highlight={nameFilter} />
+              </td>
+              <td>
+                <TextHighlighter
+                  text={company.name}
+                  highlight={companyFilter}
+                />
+              </td>
               <td>
                 <a href={`/posts?userId=${id}`}>View Posts</a>
               </td>
