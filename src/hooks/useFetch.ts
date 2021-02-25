@@ -1,10 +1,6 @@
 import * as React from 'react';
 import { API_BASE_URL } from '../constants';
 
-interface FetchOptions {
-  method?: string;
-}
-
 interface FetchResponseData<T> {
   response: Response<T>;
   error: string | null;
@@ -22,9 +18,8 @@ const DEFAULT_RESPONSE_STATE = {
 
 /**
  * @param endpoint endpoint to fetch data from.
- * @param options request options (method, header, body etc.,)
  */
-export function useFetch<T>(endpoint: string, options:FetchOptions = {}): FetchResponseData<T> {
+export function useFetch<T>(endpoint: string): FetchResponseData<T> {
   const [response, setResponse] = React.useState<Response<T>>(DEFAULT_RESPONSE_STATE);
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(true);
@@ -38,7 +33,7 @@ export function useFetch<T>(endpoint: string, options:FetchOptions = {}): FetchR
 
     const fetchData = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}${endpoint}`, options);
+        const res = await fetch(`${API_BASE_URL}${endpoint}`);
         const responseJson = await res.json();
 
         if (!didCancelFetch) {
