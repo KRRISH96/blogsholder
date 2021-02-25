@@ -8,6 +8,7 @@ import {
   getPaginationQueryParams,
 } from '../../utils';
 import { DEFAULT_COUNT_PER_PAGE, DEFAULT_PAGE } from '../../constants';
+import Pagination from '../Pagination/Pagination';
 
 export interface Post {
   userId: number;
@@ -21,6 +22,7 @@ function Posts() {
   const history = useHistory();
   const location = useLocation();
 
+  // Query Params
   const urlQueryParams = useMemo(() => {
     return new URLSearchParams(location.search);
   }, [location.search]);
@@ -29,10 +31,10 @@ function Posts() {
     return getPaginationQueryParams(urlQueryParams);
   }, [urlQueryParams]);
 
+  // Data Load
   const userId = urlQueryParams.get('userId');
-
   const {
-    response: { data: posts, totalCount },
+    response: { data: posts, totalCount = 0 },
     error,
     loading,
   } = useFetch<Post[]>(
@@ -40,8 +42,9 @@ function Posts() {
       paginationQueryParams
     )}`
   );
-
   const initialPosts = useMemo(() => posts ?? [], [posts]);
+
+  // Filters
   const [filteredPosts, setFilteredPosts] = useState(initialPosts);
 
   const clearFilters = () => {
@@ -65,6 +68,7 @@ function Posts() {
     setFilteredPosts(filteredPostList);
   }, [titleFilter, initialPosts]);
 
+  // Pagination
   const updateURL = () => {
     // Remove page param for default page
     if (urlQueryParams.get('page') === `${DEFAULT_PAGE}`) {
@@ -85,8 +89,9 @@ function Posts() {
     updateURL();
   };
 
-  const handlePostPerPageChange = (postsPerPage: number) => {
-    urlQueryParams.set('limit', `${postsPerPage}`);
+  const handlePostsPerPageChange = (postsPerPage: number) => {
+    // if postPerPage is 0 use the default count
+    urlQueryParams.set('limit', `${postsPerPage || DEFAULT_COUNT_PER_PAGE}`);
 
     // Switch to default page 1
     handleChangePage(1);
@@ -95,10 +100,6 @@ function Posts() {
   if (error) {
     return <h2>{error}</h2>;
   }
-
-  const end =
-    Number(paginationQueryParams.page) * Number(paginationQueryParams.limit);
-  const start = end - Number(paginationQueryParams.limit) + 1;
 
   return (
     <div>
@@ -124,46 +125,14 @@ function Posts() {
         ))}
         {!filteredPosts.length && <li>No posts matching search term....</li>}
       </ul>
-      <label>
-        Posts Per Page:
-        <input
-          type="number"
-          min="1"
-          step="1"
-          max={totalCount || 1}
-          defaultValue={DEFAULT_COUNT_PER_PAGE}
-          onChange={({ target }) =>
-            handlePostPerPageChange(
-              Number(target.value ?? DEFAULT_COUNT_PER_PAGE)
-            )
-          }
-        />
-      </label>
-      <div>
-        <span>
-          Showing&nbsp;{start} - {end}
-        </span>{' '}
-        of{' '}
-        <span>
-          <b>{totalCount}</b>
-        </span>
-        <button
-          onClick={() =>
-            handleChangePage(Number(paginationQueryParams.page) - 1)
-          }
-          disabled={start === 1}
-        >
-          prev
-        </button>
-        <button
-          onClick={() =>
-            handleChangePage(Number(paginationQueryParams.page) + 1)
-          }
-          disabled={end === totalCount}
-        >
-          next
-        </button>
-      </div>
+      <Pagination
+        page={Number(paginationQueryParams.page)}
+        limit={Number(paginationQueryParams.limit)}
+        total={totalCount}
+        handleChangePage={handleChangePage}
+        handlePostsPerPageChange={handlePostsPerPageChange}
+        loading={loading}
+      />
       <br />
       <BackButton />
     </div>
