@@ -43,4 +43,14 @@
       }
     }
   }
+
+  .layout-switch-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .active {
+      background-color: var(--bg-invert);
+      color: var(--color-invert);
+    }
+  }
 }

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { FaSun, FaMoon, FaCog, FaRegClock } from 'react-icons/fa';
 import { THEME_PREFERENCE_KEY, THEMES } from '../../constants';
 import { isDayTime } from '../../utils';

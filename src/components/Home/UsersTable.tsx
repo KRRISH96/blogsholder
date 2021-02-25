@@ -1,14 +1,8 @@
 import React from 'react';
 import TextHighlighter from '../TextHighlighter';
-import { UserData } from './Home';
+import { UsersListProps } from './Home';
 
-interface UsersTableProps {
-  users: UserData[];
-  nameFilter: string;
-  companyFilter: string;
-}
-
-function UsersTable({ users, nameFilter, companyFilter }: UsersTableProps) {
+function UsersTable({ users, nameFilter, companyFilter }: UsersListProps) {
   return (
     <div className="users-table-container">
       <table className="users-table">

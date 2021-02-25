@@ -2,8 +2,11 @@ import * as React from 'react';
 import { useState, useEffect, useMemo } from 'react';
 import { useFetch } from '../../hooks/useFetch';
 import Loader from '../Loader/Loader';
-import './homeStyles.scss';
 import UsersTable from './UsersTable';
+import LayoutSwitch from './LayoutSwitch';
+import UsersGrid from './UsersGrid';
+import { LAYOUT_OPTIONS } from '../../constants';
+import './homeStyles.scss';
 
 export interface UserData {
   id: number;
@@ -15,6 +18,11 @@ export interface UserData {
 interface Company {
   id: number;
   name: string;
+}
+export interface UsersListProps {
+  users: UserData[];
+  nameFilter: string;
+  companyFilter: string;
 }
 
 function Home() {
@@ -83,11 +91,26 @@ function Home() {
         )}
       </div>
       {loading && <Loader statusText="Fetching Users..." />}
-      <UsersTable
-        users={filteredUsers}
-        nameFilter={nameFilter}
-        companyFilter={companyFilter}
-      />
+      <LayoutSwitch>
+        {(activeLayout: string) => (
+          <React.Fragment>
+            {activeLayout === LAYOUT_OPTIONS.table && (
+              <UsersTable
+                users={filteredUsers}
+                nameFilter={nameFilter}
+                companyFilter={companyFilter}
+              />
+            )}
+            {activeLayout === LAYOUT_OPTIONS.grid && (
+              <UsersGrid
+                users={filteredUsers}
+                nameFilter={nameFilter}
+                companyFilter={companyFilter}
+              />
+            )}
+          </React.Fragment>
+        )}
+      </LayoutSwitch>
     </div>
   );
 }

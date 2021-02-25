@@ -25,3 +25,9 @@ export const HOUR_FROM_TIME_OF_DAY = Object.freeze({
   night: 19,
   midNight: 0,
 });
+
+// Layouts
+export const LAYOUT_OPTIONS = {
+  table: 'table',
+  grid: 'grid'
+}
