@@ -1,0 +1,41 @@
+.home-page {
+  .users-table-container {
+    overflow-x: auto;
+    .users-table {
+      border-spacing: 0;
+      text-transform: capitalize;
+      min-width: 35rem;
+      width: 100%;
+      border-collapse: collapse;
+      th,
+      td {
+        text-align: left;
+        vertical-align: baseline;
+        padding: var(--s-1);
+        &:first-child {
+          text-align: center;
+        }
+      }
+
+      .user-name {
+        width: 14rem;
+      }
+
+      &__head {
+        background-color: var(--dark-blue);
+      }
+
+      &__body {
+        tr {
+          border-bottom-style: groove;
+        }
+      }
+    }
+
+    @media only screen and (max-width: 400px) {
+      .user-name {
+        width: 12rem;
+      }
+    }
+  }
+}

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { useState, useEffect, useMemo } from 'react';
 import { useFetch } from '../../hooks/useFetch';
-import TextHighlighter from '../TextHighlighter';
 import './homeStyles.scss';
+import UsersTable from './UsersTable';
 
-interface User {
+export interface UserData {
   id: number;
   name: string;
   username: string;
@@ -23,7 +23,7 @@ function Home() {
     response: { data: users },
     error,
     loading,
-  } = useFetch<User[]>('/users');
+  } = useFetch<UserData[]>('/users');
   const initialUsers = useMemo(() => users ?? [], [users]);
   const [filteredUsers, setFilteredUsers] = useState(initialUsers);
 
@@ -82,38 +82,11 @@ function Home() {
         )}
       </div>
       {loading && <h2>Fetching Users... Sit Tight!</h2>}
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Company</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {filteredUsers.map(({ id, name, username, company }) => (
-            <tr key={`${username}-${id}`}>
-              <td>
-                <TextHighlighter text={name} highlight={nameFilter} />
-              </td>
-              <td>
-                <TextHighlighter
-                  text={company.name}
-                  highlight={companyFilter}
-                />
-              </td>
-              <td>
-                <a href={`/posts?userId=${id}`}>View Posts</a>
-              </td>
-            </tr>
-          ))}
-          {!filteredUsers.length && (
-            <tr>
-              <td colSpan={3}>No users matching search term....</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+      <UsersTable
+        users={filteredUsers}
+        nameFilter={nameFilter}
+        companyFilter={companyFilter}
+      />
     </div>
   );
 }
