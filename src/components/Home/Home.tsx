@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState, useEffect, useMemo } from 'react';
 import { useFetch } from '../../hooks/useFetch';
 import TextHighlighter from '../TextHighlighter';
+import './homeStyles.scss';
 
 interface User {
   id: number;
