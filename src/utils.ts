@@ -1,4 +1,4 @@
-import { VALID_PAGINATION_PARAMS, DEFAULT_PAGE, DEFAULT_COUNT_PER_PAGE } from "./constants";
+import { VALID_PAGINATION_PARAMS, DEFAULT_PAGE, DEFAULT_COUNT_PER_PAGE, HOUR_FROM_TIME_OF_DAY } from "./constants";
 
 interface PaginationDataParams {
   page: number;
@@ -27,4 +27,23 @@ export function generatePaginationQueryString<T>(obj: T): string {
   return Object.entries(obj)
     .map(([key, value]) => `_${key}=${value}`)
     .join("&");
+}
+
+// Theme
+/**
+ * @returns {Number} current hour of the day
+ */
+export function getCurrentHours():number {
+  return new Date().getHours();
+}
+/**
+ * @returns {Boolean} if the current time is day or not from pre defined hours range
+ */
+export function isDayTime(): boolean {
+  const hourOfTheDay = getCurrentHours();
+  // 7am to 6:59pm
+  return (
+    hourOfTheDay > HOUR_FROM_TIME_OF_DAY.morning &&
+    hourOfTheDay < HOUR_FROM_TIME_OF_DAY.night
+  );
 }

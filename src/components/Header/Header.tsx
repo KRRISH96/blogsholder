@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import Theme from '../ThemeSwitch/ThemeSwitch';
 import './headerStyles.scss';
 
 function Header() {
@@ -9,6 +10,7 @@ function Header() {
         <Link to="/" className="logo">
           BlogsHolder
         </Link>
+        <Theme />
       </div>
     </header>
   );

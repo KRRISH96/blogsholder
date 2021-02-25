@@ -23,16 +23,23 @@
   --greyish-secondary: #c4c4c4;
   --shadow: 0 0 1rem 0.2rem var(--dark-secondary);
   --shadow-secondary: 0.1rem 0.1rem 1rem 0.2rem var(--dark-secondary);
+  --shadow-secondary-light: 0.1rem 0.1rem 1rem 0.2rem var(--white-secondary);
   --btn-shadow: 0.1rem 0.1rem 0.8rem 0.1rem var(--violet);
-  --btn-shadow-danger: 0.1rem 0.1rem 0.8rem 0.1rem var(--pink);
+  --btn-shadow-light: 0.1rem 0.1rem 0.8rem 0.1rem var(--grey);
 
+  --link: var(--skyblue);
+  --link-active: var(--orange);
+
+  // Theme defaults - defauted to dark theme
   --bg: var(--dark);
   --bg-invert: var(--white);
   --bg-secondary: var(--dark-secondary);
   --header-bg: var(--dark-blue);
+  --table-header-bg: var(--dark-blue);
   --color: var(--greyish);
   --color-invert: var(--dark);
   --color-secondary: var(--greyish-secondary);
+  --logo-color: var(--pink);
 
   --link: var(--skyblue);
   --link-active: var(--orange);
@@ -71,6 +78,34 @@
   --s-4_5: 4.5rem;
   --s-4_75: 4.75rem;
   --s-5: 5rem;
+}
+
+// Themes
+// Dark specific styles aren't necessary as theme is defaulted to dark
+@mixin light-theme {
+  --bg: var(--white);
+  --bg-invert: var(--dark);
+  --bg-secondary: var(--white);
+  --header-bg: var(--white);
+  --shadow: 0 0 1rem 0.2rem var(--white-secondary);
+  --color: var(--dark);
+  --color-invert: var(--white);
+  --color-secondary: var(--dark-secondary);
+  --link: var(--violet);
+  --link-active: var(--pink);
+  --btn-shadow: var(--btn-shadow-light);
+  --shadow-secondary: var(--shadow-secondary-light);
+  --table-header-bg: var(--bluish);
+}
+
+#theme-light {
+  @include light-theme;
+}
+
+@media (prefers-color-scheme: light) {
+  #theme-system {
+    @include light-theme;
+  }
 }
 
 * {

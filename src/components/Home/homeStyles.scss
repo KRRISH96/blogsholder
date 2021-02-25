@@ -25,12 +25,14 @@
       }
 
       &__head {
-        background-color: var(--dark-blue);
+        background-color: var(--table-header-bg);
       }
 
       &__body {
-        tr {
+        tr:not(:last-child) {
           border-bottom-style: groove;
+          border-width: 1px;
+          border-color: var(--color);
         }
       }
     }
