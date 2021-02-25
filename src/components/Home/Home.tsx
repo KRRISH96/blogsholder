@@ -59,7 +59,8 @@ function Home() {
   }
 
   return (
-    <div>
+    <div className="home-page">
+      <h2>Users</h2>
       <div>
         <input
           type="text"
