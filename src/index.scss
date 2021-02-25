@@ -21,6 +21,7 @@
   --bg: var(--dark);
   --bg-invert: var(--white);
   --bg-secondary: var(--dark-secondary);
+  --header-bg: var(--dark-blue);
   --color: var(--greyish);
   --color-invert: var(--dark);
   --color-secondary: var(--greyish-secondary);
@@ -64,6 +65,10 @@
   --s-5: 5rem;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-size: var(--font-16);
 }
@@ -75,6 +80,7 @@ html {
 }
 
 body {
+  margin: 0;
   background: var(--bg);
   background-attachment: fixed;
   color: var(--color) !important;
@@ -94,4 +100,18 @@ body {
       color: var(--link-active);
     }
   }
+}
+
+header {
+  height: 4rem;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: var(--s-1_25);
+}
+
+main {
+  min-height: calc(100vh - 4rem); // vh - header height
 }

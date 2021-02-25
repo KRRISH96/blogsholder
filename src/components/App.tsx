@@ -12,9 +12,9 @@ import Header from './Header/Header';
 
 function App() {
   return (
-    <div>
-      <Router>
-        <Header />
+    <Router>
+      <Header />
+      <main className="container">
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/posts" component={Posts} />
@@ -24,8 +24,8 @@ function App() {
             <Redirect to="/" />
           </Route>
         </Switch>
-      </Router>
-    </div>
+      </main>
+    </Router>
   );
 }
 
