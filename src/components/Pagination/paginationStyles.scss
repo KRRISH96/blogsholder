@@ -1,0 +1,28 @@
+@import '../../mixins';
+
+%flex-align-center {
+  display: flex;
+  align-items: center;
+}
+
+.pagination-container {
+  @extend %flex-align-center;
+  justify-content: space-between;
+  .per-page-limit__input {
+    text-align: center;
+  }
+  @include break-point-down(phone-only) {
+    .per-page-limit__input {
+      text-align: left;
+    }
+  }
+  .page-meta-data {
+    @extend %flex-align-center;
+    &__navigators {
+      .prev,
+      .next {
+        padding: var(--s-0_5, --s-0_75);
+      }
+    }
+  }
+}
