@@ -9,9 +9,9 @@ import {
 } from '../../utils';
 import { DEFAULT_COUNT_PER_PAGE, DEFAULT_PAGE } from '../../constants';
 import Pagination from '../Pagination/Pagination';
-import TextHighlighter from '../TextHighlighter';
+import PostsList from './PostsList';
 
-export interface Post {
+export interface PostData {
   userId: number;
   id: number;
   title: string;
@@ -38,7 +38,7 @@ function Posts() {
     response: { data: posts, totalCount = 0 },
     error,
     loading,
-  } = useFetch<Post[]>(
+  } = useFetch<PostData[]>(
     `/users/${userId}/posts?${generatePaginationQueryString(
       paginationQueryParams
     )}`
@@ -122,18 +122,7 @@ function Posts() {
         )}
       </div>
       {loading && <h2>Fetching Posts... Sit Tight!</h2>}
-      <ul>
-        {filteredPosts.map(({ userId, id, title }) => (
-          <li key={`${userId}-${id}`}>
-            <p>
-              <a href={`/posts/${id}`}>
-                <TextHighlighter text={title} highlight={titleFilter} />
-              </a>
-            </p>
-          </li>
-        ))}
-        {!filteredPosts.length && <li>No posts matching search term....</li>}
-      </ul>
+      <PostsList posts={filteredPosts} titleFilter={titleFilter} />
       <Pagination
         page={Number(paginationQueryParams.page)}
         limit={Number(paginationQueryParams.limit)}

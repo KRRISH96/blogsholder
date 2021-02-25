@@ -4,7 +4,7 @@ import { useParams, useHistory, Link } from 'react-router-dom';
 import { API_BASE_URL } from '../../constants';
 import { useFetch } from '../../hooks/useFetch';
 import BackButton from '../BackButton';
-import { Post } from '../Posts/Posts';
+import { PostData } from '../Posts/Posts';
 import TextHighlighter from '../TextHighlighter';
 import Comments from './Comments';
 
@@ -22,7 +22,7 @@ function PostDetails() {
     response: { data: postDetails },
     error,
     loading,
-  } = useFetch<Post>(`/posts/${id}`);
+  } = useFetch<PostData>(`/posts/${id}`);
 
   if (error) {
     return <h2>{error}</h2>;
