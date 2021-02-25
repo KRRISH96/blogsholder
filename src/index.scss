@@ -115,3 +115,25 @@ header {
 main {
   min-height: calc(100vh - 4rem); // vh - header height
 }
+
+input {
+  font-size: var(--font-14);
+  padding: var(--s-0_75) var(--s-1);
+  margin: var(--s-0_25) var(--s-0_5);
+  background-color: var(--white);
+  border: 3px solid var(--bluish);
+  border-radius: 4px;
+  transition: 180ms box-shadow ease-in-out;
+  &:focus {
+    border-color: var(--skyblue);
+    box-shadow: 0 0 0 4px var(---skyblue);
+    outline: 3px solid transparent;
+  }
+  &[type='text'] {
+    min-width: 15rem;
+  }
+  &[disabled] {
+    background-color: var(--greyish);
+    cursor: not-allowed;
+  }
+}

@@ -62,12 +62,14 @@ function Home() {
     <div>
       <div>
         <input
+          type="text"
           value={nameFilter}
           onChange={({ target }) => setNameFilter(target.value)}
           placeholder="Filter By Name..."
           disabled={loading}
         />
         <input
+          type="text"
           value={companyFilter}
           onChange={({ target }) => setCompanyFilter(target.value)}
           placeholder="Filter By Company..."

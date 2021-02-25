@@ -106,6 +106,7 @@ function Posts() {
     <div>
       <div>
         <input
+          type="text"
           value={titleFilter}
           onChange={({ target }) => setTitleFilter(target.value)}
           placeholder="Filter By Title..."

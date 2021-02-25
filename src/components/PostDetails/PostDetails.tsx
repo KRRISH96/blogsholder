@@ -44,6 +44,7 @@ function PostDetails() {
   return (
     <div>
       <input
+        type="text"
         value={searchText}
         onChange={({ target }) => setSearchText(target.value)}
         placeholder="Search Term..."
