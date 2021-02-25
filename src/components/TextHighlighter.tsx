@@ -5,6 +5,9 @@ interface Props {
   highlight: string;
 }
 function TextHighlighter({ text, highlight }: Readonly<Props>) {
+  // No point in splitting and doing magic when highlighter is empty :-P
+  if (highlight === '') return <span>{text}</span>;
+
   // Split text into parts on highlight term, also ignore case
   const parts = text.split(new RegExp(`(${highlight})`, 'gi'));
 
