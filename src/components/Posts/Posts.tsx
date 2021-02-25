@@ -9,6 +9,7 @@ import {
 } from '../../utils';
 import { DEFAULT_COUNT_PER_PAGE, DEFAULT_PAGE } from '../../constants';
 import Pagination from '../Pagination/Pagination';
+import TextHighlighter from '../TextHighlighter';
 
 export interface Post {
   userId: number;
@@ -119,7 +120,9 @@ function Posts() {
         {filteredPosts.map(({ userId, id, title }) => (
           <li key={`${userId}-${id}`}>
             <p>
-              <a href={`/posts/${id}`}>{title}</a>
+              <a href={`/posts/${id}`}>
+                <TextHighlighter text={title} highlight={titleFilter} />
+              </a>
             </p>
           </li>
         ))}
