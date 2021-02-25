@@ -22,6 +22,7 @@
   --greyish-secondary: #c4c4c4;
   --shadow: 0 0 1rem 0.2rem var(--dark-secondary);
   --btn-shadow: 0.1rem 0.1rem 0.8rem 0.1rem var(--violet);
+  --btn-shadow-danger: 0.1rem 0.1rem 0.8rem 0.1rem var(--pink);
 
   --bg: var(--dark);
   --bg-invert: var(--white);
@@ -163,5 +164,13 @@ button {
   &:disabled {
     opacity: 0.8;
     cursor: not-allowed;
+  }
+  &.danger {
+    background-color: var(--pinkish);
+    border: 2px solid var(--pinkish);
+    box-shadow: var(--btn-shadow-danger);
+    &:hover {
+      background-color: var(--pink);
+    }
   }
 }

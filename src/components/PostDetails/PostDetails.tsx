@@ -68,7 +68,11 @@ function PostDetails() {
         />
       </p>
       {postDetails?.id && (
-        <button onClick={() => deletePost(postDetails.id)} disabled={loading}>
+        <button
+          className="danger"
+          onClick={() => deletePost(postDetails.id)}
+          disabled={loading}
+        >
           {deleteLoading ? 'Deleting...' : 'Delete Post'}
         </button>
       )}
