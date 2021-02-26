@@ -36,6 +36,7 @@
   --bg-secondary: var(--dark-secondary);
   --header-bg: var(--dark-blue);
   --table-header-bg: var(--dark-blue);
+  --overlay-transparent-bg: rgba(0, 0, 0, 0.75);
   --color: var(--greyish);
   --color-invert: var(--dark);
   --color-secondary: var(--greyish-secondary);
@@ -96,6 +97,7 @@
   --btn-shadow: var(--btn-shadow-light);
   --shadow-secondary: var(--shadow-secondary-light);
   --table-header-bg: var(--bluish);
+  --overlay-transparent-bg: rgba(255, 255, 255, 0.75);
 }
 
 #theme-light {
