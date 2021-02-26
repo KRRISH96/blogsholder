@@ -1,12 +1,15 @@
 import { VALID_PAGINATION_PARAMS, DEFAULT_PAGE, DEFAULT_COUNT_PER_PAGE, HOUR_FROM_TIME_OF_DAY } from "./constants";
 
-interface PaginationDataParams {
+
+interface DynamicQueryParamsObject extends Record<string, string | number> {};
+interface PaginationDataParams extends DynamicQueryParamsObject {
   page: number;
   limit: number;
 }
 
-export const getPaginationQueryParams = (urlParams: URLSearchParams): PaginationDataParams => {
-  const obj: any = Array.from(urlParams)
+
+export const getPaginationQueryParams = (urlParams: URLSearchParams) => {
+  const obj: DynamicQueryParamsObject = Array.from(urlParams)
     .filter((param) => VALID_PAGINATION_PARAMS.includes(param[0]))
     .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
 
